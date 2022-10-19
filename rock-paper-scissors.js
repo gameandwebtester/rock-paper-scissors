@@ -23,6 +23,7 @@ function getPlayerChoice(playerSelection) {
     }
 }
 
+// plays one round
 function playRound(playerSelection, computerSelection) {
     playerSelection = getPlayerChoice(playerSelection);
     computerSelection = getComputerChoice();
@@ -49,6 +50,7 @@ function playRound(playerSelection, computerSelection) {
     return playerSelection + ' ' + computerSelection
 }
 
+// keeps track of the score and declares a winner once 3/5 score is achieved
 function game() {
     while(playerScore < 3 || computerScore < 3){
         playRound()
