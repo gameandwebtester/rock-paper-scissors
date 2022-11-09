@@ -1,4 +1,15 @@
-let choices = ["rock", "paper", "scissors"]
+let playerSelection;
+
+const rock = document.getElementById('rock');
+const paper = document.getElementById('paper');
+const scissors = document.getElementById('scissors');
+
+rock.addEventListener('click', getPlayerChoice);
+paper.addEventListener('click', getPlayerChoicePaper);
+scissors.addEventListener('click', getPlayerChoiceScissors);
+
+
+let choices = ['rock', 'paper', 'scissors']
 let playerScore = 0;
 let computerScore = 0;
 
@@ -11,21 +22,26 @@ function score() {
     playerScore +=1
 }
 
-function getPlayerChoice(playerSelection) {
-    playerSelection = prompt("enter either 'rock', 'paper', or 'scissors'").toLowerCase();
-    if (playerSelection === choices[0].toString() || playerSelection === choices[1].toString() || 
-        playerSelection === choices[2].toString()) {
-            return playerSelection;
-    }
-    else {
-        console.error("please type a valid object");
-        return;
-    }
+function getPlayerChoicePaper(){
+    playerSelection = 'paper';
+    return playerSelection;
 }
 
-// plays one round
-function playRound(playerSelection, computerSelection) {
-    playerSelection = getPlayerChoice(playerSelection);
+function getPlayerChoice(){
+    playerSelection = 'rock';
+    return playerSelection;
+}
+
+function getPlayerChoiceScissors() {
+    playerSelection = 'scissors';
+    return playerSelection;
+}
+
+function timeFunction() {
+    setTimeout(function(){ playRound(); }, 100)
+}
+
+function playRound(computerSelection) {
     computerSelection = getComputerChoice();
 
     switch (true) {
@@ -47,28 +63,15 @@ function playRound(playerSelection, computerSelection) {
         console.log("you lose " + computerSelection + " beats " + playerSelection) 
         break;
     }
+    console.log(playerScore + ' ' + computerScore);
+
+    if(playerScore >= 5 || computerScore >= 5){
+        console.log('game over')
+        rock.remove();
+        paper.remove();
+        scissors.remove();
+        console.log(playerScore + " for the player and " +  computerScore + " for the machine is the final score")
+    }
+
     return playerSelection + ' ' + computerSelection
 }
-
-// keeps track of the score and declares a winner once 3/5 score is achieved
-function game() {
-    while(playerScore < 3 || computerScore < 3){
-        playRound()
-        if (playerScore == 3 || computerScore == 3) {
-            console.log("game is over");
-            break;
-        }
-    }
-    if( playerScore > computerScore) {
-        console.log("The player wins the game")
-    }
-    else if(computerScore > playerScore ){
-        console.log("the machine wins the game")
-    }
-    else{
-        console.log("the game is a tie")
-    }
-}
-
-game();
-console.log(playerScore + " for the player and " +  computerScore + " for the machine is the final score")
