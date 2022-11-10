@@ -4,6 +4,13 @@ const rock = document.getElementById('rock');
 const paper = document.getElementById('paper');
 const scissors = document.getElementById('scissors');
 
+const playButtons = document.getElementById('play buttons');
+
+const container = document.querySelector('#scorekeeper');
+const para = document.querySelector('.score');
+const info = document.querySelector('.info')
+const final = document.querySelector('.finalscore');
+
 rock.addEventListener('click', getPlayerChoice);
 paper.addEventListener('click', getPlayerChoicePaper);
 scissors.addEventListener('click', getPlayerChoiceScissors);
@@ -46,13 +53,13 @@ function playRound(computerSelection) {
 
     switch (true) {
         case playerSelection === computerSelection: 
-            console.log("you tied with the machine");
+        info.textContent = 'you tied with the machine'
             break;
         case playerSelection === "rock" && computerSelection == "scissors":
         case playerSelection === "paper" && computerSelection === "rock":
         case playerSelection === "scissors" && computerSelection === "paper":
             score();
-            console.log("you win " + playerSelection + " beats " + computerSelection);
+            info.textContent = "you win " + playerSelection + " beats " + computerSelection;
             break;
         case playerSelection === undefined:
             playerScore += 0;
@@ -60,18 +67,16 @@ function playRound(computerSelection) {
             break;
         default:
         computerScore += 1;
-        console.log("you lose " + computerSelection + " beats " + playerSelection) 
+        info.textContent = "you lose " + computerSelection + " beats " + playerSelection;
+        container.appendChild(info);
         break;
     }
-    console.log(playerScore + ' ' + computerScore);
+    para.textContent = 'The score is: ' + playerScore + ' / ' + computerScore;
+    container.appendChild(para);
 
     if(playerScore >= 5 || computerScore >= 5){
-        console.log('game over')
-        rock.remove();
-        paper.remove();
-        scissors.remove();
-        console.log(playerScore + " for the player and " +  computerScore + " for the machine is the final score")
-    }
-
-    return playerSelection + ' ' + computerSelection
+        playButtons.remove();
+        info.remove();
+        final.textContent = 'GAME OVER! ' + playerScore + " for the player and " +  computerScore + " for the machine is the final score";
+        container.appendChild(final);    }
 }
