@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#scorekeeper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#play-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+#rock, #paper, #scissors {
+    background-color: aqua;
+    color: blue;
+    padding: 25px;
+    margin: 24px;
+    border-radius: 12px;
+    border: black;
+}
+
+#rock:hover, #paper:hover, #scissors:hover {
+    background-color: blueviolet;
+}
+
+#rock:active, #paper:active, #scissors:active {
+    background-color: red;
+}

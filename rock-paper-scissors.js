@@ -4,7 +4,7 @@ const rock = document.getElementById('rock');
 const paper = document.getElementById('paper');
 const scissors = document.getElementById('scissors');
 
-const playButtons = document.getElementById('play buttons');
+const playButtons = document.getElementById('play-buttons');
 
 const container = document.querySelector('#scorekeeper');
 const para = document.querySelector('.score');
@@ -54,12 +54,14 @@ function playRound(computerSelection) {
     switch (true) {
         case playerSelection === computerSelection: 
         info.textContent = 'you tied with the machine'
+        container.appendChild(info);
             break;
         case playerSelection === "rock" && computerSelection == "scissors":
         case playerSelection === "paper" && computerSelection === "rock":
         case playerSelection === "scissors" && computerSelection === "paper":
             score();
             info.textContent = "you win " + playerSelection + " beats " + computerSelection;
+            container.appendChild(info);
             break;
         case playerSelection === undefined:
             playerScore += 0;
